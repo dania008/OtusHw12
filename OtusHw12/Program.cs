@@ -1,4 +1,5 @@
 ﻿using System.Collections.Concurrent;
+using System.Collections.Immutable;
 using System.IO;
 
 namespace OtusHw12
@@ -104,7 +105,6 @@ namespace OtusHw12
                     Console.WriteLine("Некорректный ввод");
                 }
             }
-            List<string> poem = new List<string>();
 
             Part1 part1 = new Part1();
             Part2 part2 = new Part2();
@@ -116,15 +116,15 @@ namespace OtusHw12
             Part8 part8 = new Part8();
             Part9 part9 = new Part9();
 
-            part1.AddPart(poem);
-            part2.AddPart(part1.Poem);
-            part3.AddPart(part2.Poem);
-            part4.AddPart(part3.Poem);
-            part5.AddPart(part4.Poem);
-            part6.AddPart(part5.Poem);
-            part7.AddPart(part6.Poem);
-            part8.AddPart(part7.Poem);
-            part9.AddPart(part8.Poem);
+            part1.AddPart();
+            part2.AddPart(part1.Poem.ToImmutableArray());
+            part3.AddPart(part2.Poem.ToImmutableArray());
+            part4.AddPart(part3.Poem.ToImmutableArray());
+            part5.AddPart(part4.Poem.ToImmutableArray());
+            part6.AddPart(part5.Poem.ToImmutableArray());
+            part7.AddPart(part6.Poem.ToImmutableArray());
+            part8.AddPart(part7.Poem.ToImmutableArray());
+            part9.AddPart(part8.Poem.ToImmutableArray());
 
             Console.WriteLine("Part 1:");
             foreach (string line in part1.Poem)
@@ -190,14 +190,13 @@ namespace OtusHw12
                 Poem = new List<string>();
             }
 
-            public void AddPart(List<string> poem)
+            public void AddPart()
             {
                 List<string> part1 = new List<string>()
         {
             "Вот дом,",
             "Который построил Джек.\n",
         };
-                Poem = new List<string>(poem);
                 Poem.AddRange(part1);
             }
         }
@@ -211,7 +210,7 @@ namespace OtusHw12
                 Poem = new List<string>();
             }
 
-            public void AddPart(List<string> poem)
+            public void AddPart(ImmutableArray<string> poem)
             {
                 List<string> part2 = new List<string>()
         {
@@ -222,8 +221,7 @@ namespace OtusHw12
             "Которая мыла чистенько моющею коркой кастрюлю,",
             "Которая стояла на светлице под золотым орлом.\n"
         };
-                Poem = new List<string>(poem);
-                Poem.AddRange(part2);
+                Poem = poem.AddRange(part2).ToList();
             }
         }
 
@@ -236,7 +234,7 @@ namespace OtusHw12
                 Poem = new List<string>();
             }
 
-            public void AddPart(List<string> poem)
+            public void AddPart(ImmutableArray<string> poem)
             {
                 List<string> part3 = new List<string>()
         {
@@ -246,8 +244,8 @@ namespace OtusHw12
             "В доме,",
             "Который построил Джек.\n",
         };
-                Poem = new List<string>(poem);
-                Poem.AddRange(part3);
+                Poem = poem.AddRange(part3).ToList();
+
             }
         }
 
@@ -260,7 +258,7 @@ namespace OtusHw12
                 Poem = new List<string>();
             }
 
-            public void AddPart(List<string> poem)
+            public void AddPart(ImmutableArray<string> poem)
             {
                 List<string> part4 = new List<string>()
         {
@@ -271,8 +269,8 @@ namespace OtusHw12
             "В доме,",
             "Который построил Джек.\n",
         };
-                Poem = new List<string>(poem);
-                Poem.AddRange(part4);
+                Poem = poem.AddRange(part4).ToList();
+
             }
         }
 
@@ -285,7 +283,7 @@ namespace OtusHw12
                 Poem = new List<string>();
             }
 
-            public void AddPart(List<string> poem)
+            public void AddPart(ImmutableArray<string> poem)
             {
                 List<string> part5 = new List<string>()
         {
@@ -297,8 +295,8 @@ namespace OtusHw12
             "В доме,",
             "Который построил Джек.\n",
         };
-                Poem = new List<string>(poem);
-                Poem.AddRange(part5);
+                Poem = poem.AddRange(part5).ToList();
+
             }
         }
 
@@ -311,7 +309,7 @@ namespace OtusHw12
                 Poem = new List<string>();
             }
 
-            public void AddPart(List<string> poem)
+            public void AddPart(ImmutableArray<string> poem)
             {
                 List<string> part6 = new List<string>()
         {
@@ -324,8 +322,8 @@ namespace OtusHw12
             "В доме,",
             "Который построил Джек.\n",
         };
-                Poem = new List<string>(poem);
-                Poem.AddRange(part6);
+                Poem = poem.AddRange(part6).ToList();
+
             }
         }
 
@@ -338,7 +336,7 @@ namespace OtusHw12
                 Poem = new List<string>();
             }
 
-            public void AddPart(List<string> poem)
+            public void AddPart(ImmutableArray<string> poem)
             {
                 List<string> part7 = new List<string>()
         {
@@ -352,8 +350,8 @@ namespace OtusHw12
             "В доме,",
             "Который построил Джек.\n",
         };
-                Poem = new List<string>(poem);
-                Poem.AddRange(part7);
+                Poem = poem.AddRange(part7).ToList();
+
             }
         }
 
@@ -366,7 +364,7 @@ namespace OtusHw12
                 Poem = new List<string>();
             }
 
-            public void AddPart(List<string> poem)
+            public void AddPart(ImmutableArray<string> poem)
             {
                 List<string> part8 = new List<string>()
         {
@@ -381,8 +379,8 @@ namespace OtusHw12
             "В доме,",
             "Который построил Джек.\n",
         };
-                Poem = new List<string>(poem);
-                Poem.AddRange(part8);
+                Poem = poem.AddRange(part8).ToList();
+
             }
         }
 
@@ -395,7 +393,7 @@ namespace OtusHw12
                 Poem = new List<string>();
             }
 
-            public void AddPart(List<string> poem)
+            public void AddPart(ImmutableArray<string> poem)
             {
                 List<string> part9 = new List<string>()
         {
@@ -411,8 +409,8 @@ namespace OtusHw12
             "В доме,",
             "Который построил Джек.",
         };
-                Poem = new List<string>(poem);
-                Poem.AddRange(part9);
+                Poem = poem.AddRange(part9).ToList();
+
             }
         }
     }
